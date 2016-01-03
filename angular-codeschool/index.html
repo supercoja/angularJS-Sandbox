@@ -1,0 +1,68 @@
+
+<html ng-app="store">
+    <head>
+        <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+    </head>
+    <body ng-controller="StoreController as store">
+        <div ng-repeat="product in store.products">
+            <h1> {{product.name}} </h1>
+            <h2> {{product.price | currency}} </h2>
+            <p> {{product.description}} </p>
+            <button ng-show="product.canPurchase"> Add To Cart </button>
+        </div>
+        <section ng-controller="PanelController as panel">
+            <ul class="nav nav-pills">
+                <li ng-class="{ active: panel.isSet(1)}">
+                     <a href ng-click="panel.setTab(1)"> Description </a>
+                </li>
+                <li ng-class="{ active: panel.isSet(2) }">
+                    <a href ng-click="panel.setTab(2)"> Specifications </a>
+                </li>
+
+               <li ng-class="{ active: panel.isSet(3) }">
+                    <a href ng-click="panel.setTab(3)"> Reviews </a>
+                </li>
+            </ul>
+
+           <div class="panel" ng-show="panel.isSet(1)" >
+            <h4> Description </h4>
+            <p>{{product.description}}</p>
+             </div>
+        <div class="panel" ng-show="panel.isSet(2)">
+            <h4> Specifications </h4>
+            <blockquote>Not Yet</blockquote>
+        </div>
+        <li class="list-group-item" ng-repeat="product in store.products">
+        <div class="panel" ng-show="panel.isSet(3)">
+            <h4> Reviews </h4>
+            <form name="reviewForm" ng-controller="ReviewController as reviewCtrl">
+            <blockquote>
+                <b> Stars: {{review.stars}} </b>
+                <textarea> {{review.body}} </textarea>
+                <cite>by: {{review.author}}</cite>
+            <blockquote>
+            <select ng-model="review.stars">
+                <option value="1">1 Star </option>    
+                <option value="2">2 Star </option>    
+            </select>
+            <textarea ng-model="review.body"></textarea>
+            <label>by:</label>
+            <input ng-model="review.author" type="email"/>
+            <input type="submit" value="Submit">
+            </form>
+
+            <blockquote ng-repeat="review in product.reviews">
+                <b> Stars: {{review.stars}} </b>
+                {{review.body}}
+                <cite>by: {{review.author}}</cite>
+            </blockquote>
+        </div>
+        </li>
+
+        <section>
+
+        <script type="text/javascript" src="angular.min.js"> </script>
+        <script type="text/javascript" src="app.js"> </script>
+    </body>
+</html>
+        
