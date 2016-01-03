@@ -1,7 +1,7 @@
 (function(){
-    var app = angular.module('store',[]);
+    var app = angular.module('githubViewer',[]);
 
-     app.controller('MainController',function($scope, $http){
+     var MainController = function($scope,$http){
 
      var onUserComplete = function(response){
          $scope.user = response.data;
@@ -11,6 +11,8 @@
      
      $scope.message = ' Angular JS';
 
-     });
+     };
+     
+     app.controller('MainController',["$scope","$http",MainController]);
 }());
 
