@@ -24,8 +24,8 @@
      };
      
      $scope.username= "angular";
-     $scope.message = ' Angular JS';
-     $scope.repoSortOrder = "stargazers_count";
+     $scope.message = " GitHub Viewer";
+     $scope.repoSortOrder = "-stargazers_count";
 
      };
 
