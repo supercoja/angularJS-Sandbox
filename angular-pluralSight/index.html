@@ -3,15 +3,38 @@
     <head>
         <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
     </head>
-    <body>
-        
-        <div ng-controller="MainController">
+    <body  ng-controller="MainController">
          <h1> Hello {{message}}
          </h1>
-         <div> First Name: {{user.name}} </div>
-         <div> Location: {{user.email}} </div>
-         <div> <img ng-src="{{user.avatar_url}}" title="{{user.avatar_url}} {{user.name}}"> </div>
-       </div>
+       
+       {{error}}
+<br>
+<br>
+       {{ username }}
+       <form name="searchUser">
+           <input type="search" placeholder="Username To Find" ng-model="username"/>
+           <input type="submit" value="Search" ng-click="search(username)">
+       </form>
+       
+       <div> First Name: {{user.name}} </div>
+       <div> <img ng-src="{{user.avatar_url}}" title="{{user.avatar_url}} {{user.name}}"> </div>      
+       
+       <table>
+           <thead>
+               <tr>
+                   <th> Name </th>
+                   <th> Stars </th>
+                   <th> Language </th>
+               </tr>
+           </thead>
+           <tbody>
+               <tr  ng-repeat="repo in repos | orderBy:'stargazers_count'">
+                   <td>{{repo.name}}</td>
+                   <td>{{repo.stargazers_count | number}}</td>
+                   <td>{{repo.language}}</td>                                      
+               </tr>
+           </tbody>
+        </table>
 
         <script type="text/javascript" src="angular.min.js"> </script>
         <script type="text/javascript" src="app.js"> </script>
