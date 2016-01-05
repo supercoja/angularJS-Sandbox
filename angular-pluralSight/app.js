@@ -25,6 +25,8 @@
      
      $scope.username= "angular";
      $scope.message = ' Angular JS';
+     $scope.repoSortOrder = "stargazers_count";
+
      };
 
      app.controller('MainController',["$scope","$http",MainController]);
