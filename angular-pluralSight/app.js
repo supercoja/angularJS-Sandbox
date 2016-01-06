@@ -1,7 +1,7 @@
 (function(){
     var app = angular.module('githubViewer',[]);
 
-     var MainController = function($scope,$http,$interval){
+     var MainController = function($scope,$http,$interval,$log){
 
      var onUserComplete = function(response){
          $scope.user = response.data;
@@ -29,11 +29,17 @@
      
      $scope.search = function(username)
      {
-         $http.get("https://api.github.com/users/" + $scope.username).then(onUserComplete, onError);         
+         $log.info("Searching for " + username);
+         $http.get("https://api.github.com/users/" + $scope.username).then(onUserComplete, onError); 
+         if(countdownInterval){
+             $interval.cancel(countdownInterval);
+             $scope.countdown = null;
+         }
      };
      
+     var countdownInterval = null;
      var startCountDown = function(){
-       $interval(decrementCountdown,1000,$scope.countdown);
+           countdownInterval = $interval(decrementCountdown,1000,$scope.countdown);
              
      };
 
@@ -41,7 +47,7 @@
      $scope.message = " GitHub Viewer";
      $scope.repoSortOrder = "-stargazers_count";
      $scope.countdown = 5;
-         startCountDown()
+     startCountDown()
 
      };
 
