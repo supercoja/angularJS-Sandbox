@@ -3,26 +3,19 @@
     <head>
         <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
     </head>
-    <body  ng-controller="MainController">
-         <h1> Hello {{message}}
-         </h1>
-       
-       {{error}}
-
-       {{countdown}}
-
-       <form name="searchUser">
-           <input type="search" placeholder="Username To Find" ng-model="username"/>
-           <input type="submit" value="Search" ng-click="search(username)">
-       </form>
-
-       <div ng-include="'userdetails.html'" ng-show="user"></div> 
+    <body>
+        <h1> GitHubViewer </j1>
+        <div ng-view>
             
+        </div>
+
         <script type="text/javascript" src="angular.min.js"> </script>
+        <script type="text/javascript" src="angular-route/angular-route.js"></script>
+    
         <script type="text/javascript" src="app.js"> </script>
+        <script type="text/javascript" src="MainController.js"> </script>
+        <script type="text/javascript" src="UserController.js"> </script>        
         <script type="text/javascript" src="github.js"> </script>                
-
-
     </body>
 </html>
         

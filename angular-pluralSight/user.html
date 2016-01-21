@@ -1,14 +1,13 @@
-<html ng-app="gitHubViewer">
-       <div id="userDetails">
-           {{user.name}}
-           <img ng-src="{{user.avatar_url}}" title="{{user.avatar_url}} {{user.name}}">
+<div>
+    <h4>{{user.name}} </h4> 
+       {{error}}
+       <img ng-src="{{user.avatar_url}}" title="{{user.avatar_url}} {{user.name}}">
        Order:
        <select ng-model="repoSortOrder">
            <option value="+name">Name </option>
            <option value="-stargazers_count">Stars  </option>
            <option value="+language">Language  </option>                      
        </select>
-            
        </div>     
        <table>
            <thead>
@@ -19,11 +18,13 @@
                </tr>
            </thead>
            <tbody>
-               <tr  ng-repeat="repo in repos | orderBy:repoSortOrder">
-                   <td>{{repo.name}}</td>
+               <tr ng-repeat="repo in repos | orderBy:repoSortOrder">
+                   <td>
+                       <a href="#repo/{{user.login}}/{{repo.name}}">
+                       {{repo.name}} </a></td>
                    <td>{{repo.stargazers_count | number}}</td>
                    <td>{{repo.language}}</td>                                      
                </tr>
            </tbody>
         </table>
-</html>
+<a href="#/main">Back To Search</a>
