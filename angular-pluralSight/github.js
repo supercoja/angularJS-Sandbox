@@ -8,18 +8,33 @@
             });
             
         };
-        
+
         var getRepos = function(user){
             return $http.get(user.repos_url)
                         .then(function(response){
                            return response.data;
                         });
-        
         };
+
+     var getRepoDetails = function(username,reponame){
+         var repo;
+         var repoUrl = "https://api.github.com/repos/" + username + "/" + reponame;
+
+         return $http.get(repoUrl)
+                        .then(function(response){
+                           return response.data;
+                           return $http.get(repoUrl + "/contributors");
+                        }).then(function(response){
+             
+                                                                                                        
+                                   }
+                               );
+        };         
         
         return{ 
             getUser: getUser,
-            getRepos: getRepos
+            getRepos: getRepos,
+            getRepoDetails
         };
     };
     
