@@ -1,8 +1,17 @@
 <div>
-    <h4> {{repo.name}} 
-    </h4>
-    {{error}}
-
-     <img ng-src="{{repo.avatar_url}}" title="{{repo.avatar_url}} {{repo.name}}">
-     <input type="text" ng-model="repo.name"></input>
+    <h2> {{repo.name}} 
+    </h2>
+    <div>
+        Issues {{repo.open_issues_count}}
+    </div>
+    <div>
+      <ul>
+          <li ng-repeat="user in repo.contributors">
+              <img src="{{user.avatar_url}}" alt="{{user.login}}">
+              {{user.login}}
+          </li>
+      </ul>
+    </div>
 </div>     
+<a href="#/main"> Back to Search </a>
+<a href="#/user/{{repo.owner.login}}"> Back to {{repo.owner.login}}</a>

@@ -8,24 +8,23 @@
 
      var onUserComplete = function(data){
           $scope.user = data;
-          github.getRepos($scope.user).then(onReposDetails, onError)
+          github.getRepoDetails(username,reponame).then(onRepo,onError);
        };
-
-
      
-       var onRepo = function(data)
+     var onRepo = function(data)
        {
-           $scope.reposlist = data;
+           $scope.repo = data;
        };
          
-       var onError = function(reason){
-          $scope.error = "Could Not Fetch Data";
-       };
-
-       $scope.username= $routeParams.username;
-       github.getUser($scope.username).then(onUserComplete, onError);
-   
+     var onError = function(reason){
+         $scope.error = "Could Not Fetch Data";
      };
-     
+
+     $scope.username= $routeParams.username;
+     github.getUser($scope.username).then(onUserComplete, onError);
+
+     };
+ 
      app.controller("RepoController",RepoController);
+
 })();
